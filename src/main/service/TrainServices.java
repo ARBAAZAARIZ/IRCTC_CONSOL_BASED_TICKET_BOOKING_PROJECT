@@ -1,5 +1,6 @@
 package main.service;
 
+import main.exception.InvalidStationsException;
 import main.model.Station;
 import main.model.Train;
 
@@ -56,7 +57,7 @@ public class TrainServices extends UserServices{
                 Station.KOLKATA,Station.LOKMANYATILAK,
                 48,LocalTime.of(11, 5)));
 
-        trains.put(12869, new Train(12871,
+        trains.put(12869, new Train(12869,
                 "CSMT HWH SF EXP",          // train 4 down
                 Station.LOKMANYATILAK,Station.KOLKATA,
                 48,LocalTime.of(3, 45)));
@@ -185,13 +186,23 @@ public class TrainServices extends UserServices{
 //            ---------------------------------------------
 
       trains.put(47865, new Train(47865,
-              "HIMSAGAR EXPRESS",          // train 14 down
+              "HIMSAGAR EXPRESS",          // train 15 down
               Station.HYDERABAD,Station.DELHI,
               120,LocalTime.of(16, 35)));
 
       trains.put(47866, new Train(47866,
-              "HIMSAGAR EXPRESS ",          // train 14 down
+              "HIMSAGAR EXPRESS ",          // train 15 down
               Station.DELHI,Station.HYDERABAD,
+              120,LocalTime.of(10, 10)));
+
+      trains.put(22222, new Train(47865,
+              "HUMSAFAR EXPRESS",          // train 16 down
+              Station.MUMBAI_CENTRAL,Station.KOLKATA,
+              120,LocalTime.of(16, 35)));
+
+      trains.put(22223, new Train(47866,
+              "HUMSAFAR EXPRESS ",          // train 16 down
+              Station.KOLKATA,Station.MUMBAI_CENTRAL,
               120,LocalTime.of(10, 10)));
 
 
@@ -206,11 +217,17 @@ public class TrainServices extends UserServices{
     }
 
     public void getTrainByStations(String origin,String destination){
+      int counter=-1;
         for (Train train : trains.values()) {
             if (train.getOrigin().equals(origin) && train.getDestination().equals(destination)) {
                 System.out.println(train);
+                counter++;
             }
         }
+        if(counter==-1){
+            throw new InvalidStationsException("Invalid Station found");
+        }
+
     }
     
     public void getTrainBySingleStation(String station){
@@ -225,14 +242,17 @@ public class TrainServices extends UserServices{
 
     public Train getTrainBytrainNum(int trainNumber){
       Train train=trains.get(trainNumber);
-      if(train==null){
-          System.out.println("Please enter correct Train number ");
-          System.out.println("Enter train number ");
-          getTrainBytrainNum(sc.nextInt());
-      }
+     while(train==null){
+         System.out.println("Please enter correct Train number ");
+         System.out.println("Enter train number ");
+         int newTrainNo=sc.nextInt();
+         train=trains.get(newTrainNo);
+     }
         System.out.println("    Train Details     ");
         return train;
     }
+
+
 
 
 }

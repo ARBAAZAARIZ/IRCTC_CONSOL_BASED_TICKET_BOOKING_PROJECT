@@ -61,9 +61,9 @@ public class Booking {
         Thread.sleep(1000);
         System.out.println( "        User Name    : " + user.getUsername());
         Thread.sleep(1000);
-        System.out.println( "     Train number  : " + train.getTrainNumber());
+        System.out.println( "     Train number    : " + train.getTrainNumber());
         Thread.sleep(1000);
-        System.out.println("        Train Name    : " + train.getTrainName());
+        System.out.println("        Train Name   : " + train.getTrainName());
         Thread.sleep(1000);
         System.out.println( "         Origin      : " + train.getOrigin());
         Thread.sleep(1000);

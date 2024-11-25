@@ -2,9 +2,12 @@ package main;
 
 
 
+import main.service.TrainServices;
+
 import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 class Trainssss{
     private int num;
@@ -48,6 +51,19 @@ public class waste {
         TrainssssMapData.put(456, new Trainssss(456,"77881"));
 
         System.out.println(TrainssssMapData.put(786, new Trainssss(786,"66778")));
+
+        TrainServices.preDefinedTrains();
+        TrainServices trainServices=new TrainServices();
+        trainServices.getAllTrains();
+
+        try{
+            System.out.println("enter name");
+            Scanner s=new Scanner(System.in);
+            String str=s.next();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
 
     }
 

@@ -1,6 +1,7 @@
 package main.model;
 
 
+import java.sql.Time;
 import java.time.LocalTime;
 
 public class Train {
@@ -75,11 +76,20 @@ public class Train {
     }
 
     public String toString(){
-        return "\n"+"     train no      : "+trainNumber+" \n"+
-               "    train name   : "+trainName+" \n"+
-               "     origin      : "+origin+" \n"+
-               "   destination     : "+destination+" \n"+
-               "seat availability  : "+seatAvailable+" \n"+
-               "       time        : "+time+" \n";
+//        return "\n"+"     TRAIN NO      : "+trainNumber+" \n"+
+//                "TRAIN NAME "      +
+//               "     origin      : "+origin+" \n"+
+//               "   destination     : "+destination+" \n"+
+//               "seat availability  : "+seatAvailable+" \n"+
+//               "       time        : "+time+" \n";
+
+
+        return "\n"+
+                "          TRAIN NO       :  "+trainNumber+"\n"+
+                "         TRAIN NAME      :  "+trainName+"\n"+
+                "           ORIGIN        :  "+origin+"\n"+
+                "         DESTINATION     :  "+destination+"\n"+
+                "      SEAT AVAILABILITY  :  "+seatAvailable+"\n"+
+                "            TIME         :  "+time+"\n";
     }
 }

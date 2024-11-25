@@ -1,8 +1,10 @@
 package main;
 
 
+import main.exception.UserNameAlreadyTaken;
+import main.model.Train;
 import main.model.User;
-import main.model.UserNotFoundException;
+import main.exception.UserNotFoundException;
 import main.service.BookingSystem;
 import main.service.TrainServices;
 import main.service.UserServices;
@@ -40,10 +42,13 @@ public class MainApplication {
           System.exit(0);
         }
 
-        if(user==null){
+        if(choice==1 && user==null){
+
+            throw new UserNameAlreadyTaken("  User name already taken please refresh and try again ");
+        }
+        else if (choice==2 && user==null){
             System.out.println("You can't proceed any further from here.");
-            throw new UserNotFoundException("  User not found. Please check the entered " +
-                    "details and try again.");
+            throw new UserNotFoundException("please provide correct information,INVALID CREDENTIALS!!");
         }
         int option=bookingSystem.mainMenu();
 
@@ -109,10 +114,13 @@ public class MainApplication {
 
             } else if (option==3) {
 //                user chose 3 to get trains by train number
-                System.out.println("Please enter your train number to proceed.r");
+                System.out.println(" Please enter your train number to proceed. ");
                 int trainNumber=sc.nextInt();
 
-                System.out.println( bookingSystem.getTrainBytrainNum(trainNumber)); //getTrainBytrainNum
+               Train train= bookingSystem.getTrainBytrainNum(trainNumber); //getTrainBytrainNum
+                System.out.println(train);
+                trainNumber=train.getTrainNumber();
+
                 System.out.println("If you want to book a ticket, press 'T'. Otherwise, press 'F'. ");
                 char o=sc.next().charAt(0);
                 if(o=='t'){
